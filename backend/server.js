@@ -86,7 +86,11 @@ app.put("/sessions/:id", (req, res) => {
                 return res.status(500).json(err);
             }
 
-            res.json({ message: "Session updated" });
+            if (this.changes === 0) {
+                return res.status(404).json({ error: "Session not found" });
+            }
+
+            res.json({ message: "Session updated successfully" });
 
         }
     );

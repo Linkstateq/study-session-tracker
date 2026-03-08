@@ -135,7 +135,11 @@ async function addSession(e){
     let finalSubject = subject === "Other" ? customSubject : subject
 
     // Basic validation: prevent submitting empty session data.
-    if(!finalSubject || !duration || !date) return
+    if((subject==="Other" && !customSubject) || !duration || !date) return
+    if(new Date(date) > new Date()){
+        alert("Date cannot be in the future")
+        return
+       }
     
     finalSubject = normalizeSubject(finalSubject)
     
@@ -157,15 +161,9 @@ async function addSession(e){
     
     /* update local state immediately */
     
-    setSessions(prev =>
-    prev.map(session =>
-    session.id === editingId
-    ? { ...session, ...payload }
-    : session
-    )
-    )
-    
+    loadSessions()  //reload from backend
     setEditingId(null)
+    
     resetForm()
     
     }else{
@@ -253,11 +251,15 @@ return stars
 
 // Prepare data for the analytics bar chart showing
 // total study hours per subject.
-const subjectTotals=subjects.map(sub=>
-sessions
-.filter(s=>s.subject===sub)
-.reduce((sum,s)=>sum+Number(s.duration||0),0)
-)
+const filteredSubjects = subjects.filter(sub =>
+    sessions.some(s => s.subject === sub)
+    )
+    
+    const subjectTotals=filteredSubjects.map(sub=>
+    sessions
+    .filter(s=>s.subject===sub)
+    .reduce((sum,s)=>sum+Number(s.duration||0),0)
+    )
 
 const maxValue=Math.max(...subjectTotals,1)
 
@@ -267,7 +269,7 @@ v===maxValue ? "#3b82f6" : "#cbd5e1"
 
 // Chart.js dataset configuration for the analytics graph.
 const chartData={
-labels:subjects,
+labels:filteredSubjects,
 datasets:[{
 data:subjectTotals,
 backgroundColor:chartColors,
