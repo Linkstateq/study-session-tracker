@@ -104,6 +104,10 @@ npm run dev
 
 The development server will open the application automatically in the browser.
 
+If it does not open automatically, you can access the application at:
+
+http://localhost:5173
+
 ---
 
 ## API Endpoints
@@ -195,14 +199,4 @@ study-session-tracker
 
 ---
 
-## Future Improvements
-
-Possible improvements include:
-
-- User authentication
-- Exporting study statistics
-- Additional analytics features
-- Cloud database integration
-
----
 
