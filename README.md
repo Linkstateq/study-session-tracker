@@ -106,7 +106,9 @@ The development server will open the application automatically in the browser.
 
 If it does not open automatically, you can access the application at:
 
+```
 http://localhost:5173
+```
 
 ---
 
