@@ -2,13 +2,9 @@
 
 ## Project Overview
 
-The Study Session Tracker is a web application that helps students log
-and analyse their study sessions. Users can record the subject studied,
-duration, date, and productivity level of each session.
+The Study Session Tracker is a web application that helps students log and analyse their study sessions. Users can record the subject studied, duration, date, and productivity level of each session.
 
-The goal of the application is to help students reflect on their study
-habits and understand how their study time is distributed across
-subjects.
+The goal of the application is to help students reflect on their study habits and understand how their study time is distributed across subjects.
 
 This project was developed as part of the course:
 
@@ -53,24 +49,160 @@ The frontend communicates with the backend through REST API requests.
 
 ## Application Architecture
 
-The application follows a client–server architecture:
+The application follows a client–server architecture.
 
-Frontend (React)  
+User Browser  
 ↓  
-Backend API (Node.js + Express)  
+React Frontend  
+↓ HTTP Requests  
+Node.js + Express Backend  
 ↓  
-Database (SQLite)
+SQLite Database  
 
-The frontend sends HTTP requests to the backend.  
-The backend processes the requests and stores or retrieves data from the database.
+The frontend sends HTTP requests to the backend. The backend processes the request and stores or retrieves data from the SQLite database.
 
 ---
 
-# Quick Start
+## Quick Start
 
-Clone the repository and run both the backend and frontend.
+Clone the repository:
 
 ```bash
 git clone https://github.com/Linkstateq/study-session-tracker.git
 cd study-session-tracker
+```
+
+---
+
+## Running the Backend
+
+Navigate to the backend folder and start the server:
+
+```bash
+cd backend
+npm install
+node server.js
+```
+
+The backend server runs on:
+
+```
+http://localhost:3000
+```
+
+---
+
+## Running the Frontend
+
+Open a new terminal and start the frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The development server will open the application automatically in the browser.
+
+---
+
+## API Endpoints
+
+The backend exposes the following REST API endpoints:
+
+GET /sessions  
+Returns all stored study sessions.
+
+POST /sessions  
+Creates a new study session.
+
+PUT /sessions/:id  
+Updates an existing session.
+
+DELETE /sessions/:id  
+Deletes a study session.
+
+---
+
+## Test Cases
+
+The application was manually tested using the following scenarios.
+
+### Test Case 1 – Add Session
+
+Input  
+Subject: Programming  
+Duration: 2 hours  
+Date: valid date  
+Productivity: 4  
+
+Expected Result  
+Session is stored in the database and displayed in the sessions table.
+
+---
+
+### Test Case 2 – Edit Session
+
+Action  
+User clicks the Edit button for a session.
+
+Expected Result  
+The form is populated with the existing values and allows updating the session.
+
+---
+
+### Test Case 3 – Delete Session
+
+Action  
+User clicks Delete on a session.
+
+Expected Result  
+The session is removed from the database and disappears from the session table.
+
+---
+
+### Test Case 4 – Responsive Layout
+
+Action  
+Resize the browser window or open the application on a mobile device.
+
+Expected Result  
+Layout rearranges correctly and remains readable.
+
+---
+
+## Project Structure
+
+```
+study-session-tracker
+│
+├── backend
+│   ├── server.js
+│   ├── database.db
+│   ├── package.json
+│
+├── frontend
+│   ├── index.html
+│   ├── package.json
+│   ├── src
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   ├── components
+│
+├── README.md
+└── .gitignore
+```
+
+---
+
+## Future Improvements
+
+Possible improvements include:
+
+- User authentication
+- Exporting study statistics
+- Additional analytics features
+- Cloud database integration
+
+---
 
